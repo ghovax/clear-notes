@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Input } from '@/components/ui/input';
 
 interface TranscriptionResult {
   language_code?: string;
@@ -42,6 +43,7 @@ const AudioTranscriber = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLongTranscription, setIsLongTranscription] = useState<boolean>(false);
   const [savedFileName, setSavedFileName] = useState<string | null>(null);
+  const [languageCode, setLanguageCode] = useState<string>("ita"); // Default to Italian
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
@@ -72,6 +74,7 @@ const AudioTranscriber = () => {
       // Create a FormData object to send the file
       const formData = new FormData();
       formData.append('audio', file);
+      formData.append('language_code', languageCode);
 
       // Make the API request to our server-side API route
       const response = await axios.post(
@@ -136,7 +139,7 @@ const AudioTranscriber = () => {
   return (
     <Card className="w-full max-w-full mx-auto">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base sm:text-lg md:text-xl lg:text-2xl">Audio Transcription</CardTitle>
+        <CardTitle className="text-xl">Audio Transcription</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4">
@@ -148,19 +151,35 @@ const AudioTranscriber = () => {
           <input {...getInputProps()} />
           {file ? (
             <div>
-              <p className="font-medium text-base sm:text-md md:text-base lg:text-lg break-words">{file.name}</p>
-              <p className="text-md sm:text-md md:text-md lg:text-base text-muted-foreground">
+              <p className="font-medium text-md break-words">{file.name}</p>
+              <p className="text-sm text-muted-foreground">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
               </p>
             </div>
           ) : (
             <div>
-              <p className="text-base sm:text-md md:text-base lg:text-lg">Drag & drop an audio file here, or tap to select</p>
-              <p className="text-md sm:text-md md:text-md lg:text-base text-muted-foreground mt-1">
+              <p className="text-md">Drag & drop an audio file here, or tap to select</p>
+              <p className="text-sm text-muted-foreground mt-1">
                 Supported formats: MP3, WAV, M4A, AAC, OGG, FLAC
               </p>
             </div>
           )}
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="language-code" className="text-md font-medium">
+            Language Code
+          </label>
+          <Input
+            id="language-code"
+            type="text"
+            value={languageCode}
+            onChange={(e) => setLanguageCode(e.target.value)}
+            placeholder="Enter language code (e.g., ita, eng, fra)"
+          />
+          <p className="text-sm text-muted-foreground">
+            Common codes: eng (English), ita (Italian), fra (French), deu (German), spa (Spanish)
+          </p>
         </div>
 
         {file && (
@@ -176,13 +195,13 @@ const AudioTranscriber = () => {
         {isTranscribing && (
           <div className="space-y-1">
             <Progress value={progress} className="w-full h-2" />
-            <p className="text-md sm:text-md md:text-md lg:text-base text-left">{progress}% complete</p>
+            <p className="text-sm text-left">{progress}% complete</p>
           </div>
         )}
 
         {error && (
           <Alert variant="destructive">
-            <AlertDescription className="text-md sm:text-md md:text-md lg:text-base">
+            <AlertDescription className="text-md">
               {error}
             </AlertDescription>
           </Alert>

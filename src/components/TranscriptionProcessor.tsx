@@ -124,7 +124,7 @@ const TranscriptionProcessor = () => {
   return (
     <Card className="w-full max-w-full mx-auto">
       <CardHeader className="pb-2">
-        <CardTitle className="text-md sm:text-lg md:text-xl lg:text-2xl">Process Transcription</CardTitle>
+        <CardTitle className="text-xl">Process Transcription</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4">
@@ -136,15 +136,15 @@ const TranscriptionProcessor = () => {
           <input {...getInputProps()} />
           {file ? (
             <div>
-              <p className="font-medium text-md sm:text-md md:text-md lg:text-lg break-words">{file.name}</p>
-              <p className="text-md sm:text-md md:text-md lg:text-md text-muted-foreground">
+              <p className="font-medium text-md break-words">{file.name}</p>
+              <p className="text-sm text-muted-foreground">
                 {(file.size / 1024).toFixed(2)} KB
               </p>
             </div>
           ) : (
             <div>
-              <p className="text-md sm:text-md md:text-md lg:text-lg">Drag & drop a transcription file here, or tap to select</p>
-              <p className="text-md sm:text-md md:text-md lg:text-md text-muted-foreground mt-1">
+              <p className="text-md">Drag & drop a transcription file here, or tap to select</p>
+              <p className="text-sm text-muted-foreground mt-1">
                 Supported format: JSON
               </p>
             </div>
@@ -164,13 +164,13 @@ const TranscriptionProcessor = () => {
         {isProcessing && (
           <div className="space-y-1">
             <Progress value={progress} className="w-full h-2" />
-            <p className="text-md sm:text-md md:text-md lg:text-md text-left">{progress}% complete</p>
+            <p className="text-sm text-left">{progress}% complete</p>
           </div>
         )}
 
         {error && (
           <Alert variant="destructive">
-            <AlertDescription className="text-md sm:text-md md:text-md lg:text-md">
+            <AlertDescription className="text-md">
               {error}
             </AlertDescription>
           </Alert>

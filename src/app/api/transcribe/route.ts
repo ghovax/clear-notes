@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
     // Get the form data from the request
     const formData = await request.formData();
     const audioFile = formData.get('audio') as File;
+    const languageCode = formData.get('language_code') as string || 'ita'; // Default to Italian if not provided
 
     if (!audioFile) {
       return NextResponse.json(
@@ -39,7 +40,7 @@ export async function POST(request: NextRequest) {
       file: audioBlob,
       model_id: "scribe_v1", // Model to use
       tag_audio_events: true, // Tag audio events like laughter, applause, etc.
-      language_code: "ita", // Language of the audio file
+      language_code: languageCode, // Language of the audio file from the request
       diarize: true, // Whether to annotate who is speaking
       num_speakers: 1,
     });
