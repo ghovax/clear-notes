@@ -136,7 +136,7 @@ const AudioTranscriber = () => {
   return (
     <Card className="w-full max-w-full mx-auto">
       <CardHeader className="pb-2">
-        <CardTitle className="text-base sm:text-lg">Audio Transcription</CardTitle>
+        <CardTitle className="text-base sm:text-lg md:text-xl lg:text-2xl">Audio Transcription</CardTitle>
       </CardHeader>
 
       <CardContent className="space-y-4">
@@ -148,15 +148,15 @@ const AudioTranscriber = () => {
           <input {...getInputProps()} />
           {file ? (
             <div>
-              <p className="font-medium text-base sm:text-sm break-words">{file.name}</p>
-              <p className="text-sm sm:text-xs text-muted-foreground">
+              <p className="font-medium text-base sm:text-md md:text-base lg:text-lg break-words">{file.name}</p>
+              <p className="text-md sm:text-md md:text-md lg:text-base text-muted-foreground">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
               </p>
             </div>
           ) : (
             <div>
-              <p className="text-base sm:text-sm">Drag & drop an audio file here, or tap to select</p>
-              <p className="text-sm sm:text-xs text-muted-foreground mt-1">
+              <p className="text-base sm:text-md md:text-base lg:text-lg">Drag & drop an audio file here, or tap to select</p>
+              <p className="text-md sm:text-md md:text-md lg:text-base text-muted-foreground mt-1">
                 Supported formats: MP3, WAV, M4A, AAC, OGG, FLAC
               </p>
             </div>
@@ -176,13 +176,13 @@ const AudioTranscriber = () => {
         {isTranscribing && (
           <div className="space-y-1">
             <Progress value={progress} className="w-full h-2" />
-            <p className="text-sm sm:text-xs text-left">{progress}% complete</p>
+            <p className="text-md sm:text-md md:text-md lg:text-base text-left">{progress}% complete</p>
           </div>
         )}
 
         {error && (
           <Alert variant="destructive">
-            <AlertDescription className="text-sm sm:text-xs">
+            <AlertDescription className="text-md sm:text-md md:text-md lg:text-base">
               {error}
             </AlertDescription>
           </Alert>

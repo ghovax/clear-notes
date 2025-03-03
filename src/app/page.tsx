@@ -4,17 +4,17 @@ import TranscriptionProcessor from "../components/TranscriptionProcessor";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-30 font-[family-name:var(--font-geist-sans)]">
+    <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 pb-20 gap-8 sm:p-30 font-[family-name:var(--font-geist-sans)] text-base md:text-md lg:text-lg">
       <header className="w-full flex justify-center items-center py-4">
-        <h1 className="text-2xl font-bold">ClearNotes</h1>
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">ClearNotes</h1>
       </header>
 
-      <main className="w-full max-w-7xl flex flex-col gap-8 items-center">
+      <main className="w-full max-w-8xl flex flex-col gap-8 items-center">
         <AudioTranscriber />
         <TranscriptionProcessor />
       </main>
 
-      <footer className="w-full flex justify-center items-center py-4 text-sm text-gray-500">
+      <footer className="w-full flex justify-center items-center py-4 text-sm md:text-base text-gray-500">
         <p>Powered by ElevenLabs API</p>
       </footer>
     </div>
