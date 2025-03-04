@@ -151,14 +151,14 @@ const AudioTranscriber = () => {
           <input {...getInputProps()} />
           {file ? (
             <div>
-              <p className="font-medium text-md break-words">{file.name}</p>
+              <p className="font-md text-base break-words">{file.name}</p>
               <p className="text-sm text-muted-foreground">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
               </p>
             </div>
           ) : (
             <div>
-              <p className="text-md">Drag & drop an audio file here, or tap to select</p>
+              <p className="text-base">Drag & drop an audio file here, or tap to select</p>
               <p className="text-sm text-muted-foreground mt-1">
                 Supported formats: MP3, WAV, M4A, AAC, OGG, FLAC
               </p>
@@ -167,7 +167,7 @@ const AudioTranscriber = () => {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="language-code" className="text-md font-medium">
+          <label htmlFor="language-code" className="text-sm font-medium">
             Language Code
           </label>
           <Input
@@ -176,6 +176,7 @@ const AudioTranscriber = () => {
             value={languageCode}
             onChange={(e) => setLanguageCode(e.target.value)}
             placeholder="Enter language code (e.g., ita, eng, fra)"
+            className='w-48'
           />
           <p className="text-sm text-muted-foreground">
             Common codes: eng (English), ita (Italian), fra (French), deu (German), spa (Spanish)
